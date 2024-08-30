@@ -83,7 +83,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Collect Logs and Analyze
-        uses: shivendratiwari07/action_repo/.github/actions@v1.3.0
+        uses: shivendratiwari07/action_repo/.github/actions@v1.4.0
         with:
           run_id: ${{ github.run_id }}
           repo_owner: ${{ github.repository_owner }}
