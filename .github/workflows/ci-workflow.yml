@@ -101,13 +101,5 @@ jobs:
           repo_owner: ${{ github.repository_owner }}
           repo_name: ${{ github.event.repository.name }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-<<<<<<< HEAD
           custom_service_cookie: ${{ secrets.COOKIE_LOGS_ANALYSIS }}
 
-
-
-##
-=======
-          custom_service_cookie: ${{ secrets.EIT_CUSTOM_SERVICE_COOKIE_LOGS_ANALYSIS }}
-##
->>>>>>> 3b5d41751b4fa2ace11fe0c55fffffa0c5d23e19
