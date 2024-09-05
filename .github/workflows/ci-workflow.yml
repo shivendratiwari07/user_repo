@@ -92,7 +92,7 @@ jobs:
   #         custom_service_cookie: ${{ secrets.COOKIE_LOGS_ANALYSIS }}
 
   log_analysis:
-    runs-on: ubuntu-latest   #windows-latest #
+    runs-on: windows-latest   #ubuntu-latest   #windows-latest #
     steps:
       - name: Collect Logs and Analyze
         uses: shivendratiwari07/action_repo/.github/actions@v1.18.0
