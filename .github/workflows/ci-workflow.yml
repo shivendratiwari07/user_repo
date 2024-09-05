@@ -95,7 +95,7 @@ jobs:
     runs-on: ubuntu-latest   #windows-latest #
     steps:
       - name: Collect Logs and Analyze
-        uses: shivendratiwari07/action_repo/.github/actions@v1.17.0
+        uses: shivendratiwari07/action_repo/.github/actions@v1.18.0
         with:
           run_id: ${{ github.run_id }}
           repo_owner: ${{ github.repository_owner }}
