@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Automated Code Review
-        uses: philips-internal/digit-log-analytics@main
+        uses: shivendratiwari07/code_review@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CUSTOM_SERVICE_COOKIE: ${{ secrets.CUSTOM_SERVICE_COOKIE }}
