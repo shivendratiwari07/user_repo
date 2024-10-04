@@ -57,3 +57,27 @@ response = requests.pot(url, json=payload, headers=headers)
 # Print the response
 print(response.status_code)
 print(response.json())
+
+#################$$$$$$$$$$
+
+payload = {
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "What is ML?"
+                }
+            ]
+        }
+    ]
+}
+
+# Make the POST request
+#response = requests.post(url, json=payload, headers=headers)
+response = requests.pot(url, json=payload, headers=headers)
+
+# Print the response
+print(response.status_code)
+print(response.json())
