@@ -1,105 +1,18 @@
-name: Main CI Workflow
+name: "Automated Code Review"
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
-
-permissions:
-  actions: write
-  contents: write
+    types: [opened, synchronize, reopened]
 
 jobs:
-  run-script:
+  code_review_job:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Print Workflow Run ID
-        run: |
-          echo "The Workflow Run ID is: $GITHUB_RUN_ID"
-
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v4
+      - name: Automated Code Review
+        uses: philips-internal/digit-log-analytics@main
         with:
-          python-version: '3.12'
-
-      - name: Install dependencies
-        run: |
-          python -m venv myenv
-          source myenv/bin/activate
-          pip install requests
-
-      - name: Run openai.py script
-        run: |
-          source myenv/bin/activate
-          python openai.py
-
-      - name: Print Workflow Run ID again
-        run: |
-          echo "The Workflow Run ID is: $GITHUB_RUN_ID"
-  
-  dummy-job-1:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dummy Job 1
-        run: echo "This is a dummy job 1."
-
-  dummy-job-2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dummy Job 2
-        run: exit 1 # Fail this job
-
-  dummy-job-3:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dummy Job 3
-        run: echo "This is a dummy job 3."
-
-  # dummy-job-4:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Dummy Job 4
-  #       run: exit 1 # Fail this job
-
-  dummy-job-5:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dummy Job 5
-        run: echo "This is a dummy job 5."
-
-  dummy-job-6:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dummy Job 6
-        run: echo "This is a dummy job 6."
-
-  # collect-logs:
-  #   runs-on: windows-latest #ubuntu-latest
-  #   steps:
-  #     - name: Collect Logs and Analyze
-  #       uses: shivendratiwari07/action_repo/.github/actions@v1.14.0
-  #       with:
-  #         run_id: ${{ github.run_id }}
-  #         repo_owner: ${{ github.repository_owner }}
-  #         repo_name: ${{ github.event.repository.name }}
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  ##        custom_service_cookie: ${{ secrets.COOKIE_LOGS_ANALYSIS }}
-
-  log_analysis:
-    runs-on: windows-latest   #ubuntu-latest   #windows-latest #
-    steps:
-      - name: Collect Logs and Analyze
-        uses: shivendratiwari07/action_repo/.github/actions@v1.18.0
-        with:
-          run_id: ${{ github.run_id }}
-          repo_owner: ${{ github.repository_owner }}
-          repo_name: ${{ github.event.repository.name }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          custom_service_cookie: ${{ secrets.CUSTOM_SERVICE_COOKIE_LOGS_ANALYSIS }}
-
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CUSTOM_SERVICE_COOKIE: ${{ secrets.CUSTOM_SERVICE_COOKIE }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
