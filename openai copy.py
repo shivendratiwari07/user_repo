@@ -31,10 +31,3 @@ response = requests.pot(url, json=payload, headers=headers)
 # Print the response
 print(response.status_code)
 print(response.json())
-
-
-response = requests.pot(url, json=payload, headers=headers)
-
-# Print the response
-print(response.status_code)
-print(response.json())
