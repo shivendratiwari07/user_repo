@@ -24,6 +24,45 @@ def subtract(x, y):
     """
     return x - y
 
+def subtract(x, y):
+    """
+    Subtracts the second number from the first and returns the result.
+    
+    Parameters:
+    x (float): The first number.
+    y (float): The second number.
+    
+    Returns:
+    float: The difference between x and y.
+    """
+    return x - y
+
+def subtract(x, y):
+    """
+    Subtracts the second number from the first and returns the result.
+    
+    Parameters:
+    x (float): The first number.
+    y (float): The second number.
+    
+    Returns:
+    float: The difference between x and y.
+    """
+    return x - y
+
+def subtract(x, y):
+    """
+    Subtracts the second number from the first and returns the result.
+    
+    Parameters:
+    x (float): The first number.
+    y (float): The second number.
+    
+    Returns:
+    float: The difference between x and y.
+    """
+    return x - y
+
 def multiply(x, y):
     """
     Multiplies two numbers and returns the result.
