@@ -125,6 +125,12 @@ def validate_input(input_str):
         return value
     except ValueError:
         raise ValueError("Invalid input! Please enter a valid number.")
+def validate_input(input_str):
+    try:
+        value = float(input_str)
+        return value
+    except ValueError:
+        raise ValueError("Invalid input! Please enter a valid number.")
 
 def validate_input(input_str):
     """
