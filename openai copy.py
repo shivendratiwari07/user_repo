@@ -266,12 +266,12 @@ def calculator():
     elif choice == '3':
         result = multiply(num1, num2)
         operation = " * "
-    elif choice == '4':
-        result = divide(num1, num2)
-        operation = " / "
+#     elif choice == '4':
+#         result = divide(num1, num2)
+#         operation = " / "
 
-    print(f"{num1}{operation}{num2} = {result}")
+#     print(f"{num1}{operation}{num2} = {result}")
 
-if __name__ == "__main__":
-    # Entry point for the calculator application.
-    calculator()
+# if __name__ == "__main__":
+#     # Entry point for the calculator application.
+#     calculator()
