@@ -9,7 +9,7 @@ def add(x, y):
     Returns:
     float: The sum of x and y.
     """
-    return x + y
+    return x
 
 def subtract(x, y):
     """
