@@ -4,11 +4,6 @@ import json
 import requests
 
 
-import os
-import sys
-import json
-import requests
-
 # GitHub environment variables
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 GITHUB_REPOSITORY = os.getenv('GITHUB_REPOSITORY')
@@ -155,6 +150,7 @@ def main():
 
     1. Code Quality Rules: Check for clear naming conventions, avoid magic numbers, and ensure functions have comments.
     2. Performance Optimization: Look for unnecessary iterations and inefficient string concatenations.
+    3. Security Best Practices: Check for input validation and avoid hard-coded secrets.
     3. Security Best Practices: Check for input validation and avoid hard-coded secrets.
     4. Maintainability: Remove dead code and ensure proper exception handling.
     5. Code Style: Check brace style, consistent indentation, and look out for duplicated code.
