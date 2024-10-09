@@ -22,7 +22,7 @@ def subtract(x, y):
     Returns:
     float: The difference between x and y.
     """
-    return x -
+    return x - y
 
 def subtract(x, y):
     """
