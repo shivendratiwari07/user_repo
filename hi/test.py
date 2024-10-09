@@ -269,3 +269,7 @@ if __name__ == "__main__":
 if __name__ == "__main__":
     # Entry point for the calculator application.
     calculator()
+
+if __name__ == "__main__":
+    # Entry point for the calculator application.
+    calculator()
