@@ -264,7 +264,7 @@ def calculator():
     print(f"{num1}{operation}{num2} = {result}")
 
 if __name__ == "__main__":
-    # Entry point for the calculator application.
+    
     calculator()
 
 
