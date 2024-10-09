@@ -355,11 +355,12 @@ def send_diff_to_openai(diff, rules):
                     {
                         "type": "text",
                         "text": (
-                            "Act as a senior code reviewer. Review the code changes provided in the diff below with a focus on critical issues:\n\n"
+                            "Please review the code changes provided in the diff below based on the following criteria:\n\n"
                             + rules +
-                            "\n\nIf the code meets all the standards, respond with: 'Everything looks good.'"
+                            "\n\nIf the overall code appears to be 80% good or more and has no critical issues, respond with: 'Everything looks good.'"
                             " If there are critical issues that need attention, provide a brief summary (max 2 sentences) of the key areas needing improvement."
-                            " Keep the response short, like a human reviewer might provide, and ignore non-critical issues or minor improvements."
+                            " Include a code snippet from the diff that illustrates the issue, without suggesting detailed solutions or minor improvements."
+                            "\n\nKeep the response brief, as if it were from a human reviewer."
                             "\n\nHere is the diff with only the added lines:\n\n"
                             + diff
                         )
@@ -427,13 +428,17 @@ def main():
     # Fetch the correct commit ID from the PR
     commit_id = get_pull_request_commit_id()
 
-    # Define the rules with detailed instructions for a focused review
+    # Define the rules with more detailed instructions and examples
     rules = """
-    Focus only on critical issues in the code changes:
-    - Identify potential bugs, security vulnerabilities, or significant performance issues.
-    - Ignore non-critical style preferences, minor naming improvements, or trivial changes.
-    - Summarize any critical issues with a maximum of 2 sentences.
-    - If there are no critical issues, respond with 'Everything looks good.'
+    Please review the code changes provided in the diff below based on the following criteria:
+
+    1. Code Quality: Ensure clear naming conventions, avoid magic numbers, and verify that functions have appropriate comments.
+    2. Performance Optimization: Identify any unnecessary iterations or inefficient string concatenations.
+    3. Security Best Practices: Check for proper input validation and the absence of hard-coded secrets.
+    4. Maintainability: Look for dead code, proper exception handling, and ensure modularity.
+    5. Code Style: Confirm consistent indentation, brace style, and identify any duplicated code.
+
+    If the overall code appears to be 80% good or more and has no critical issues, simply respond with 'Everything looks good.' If there are critical issues, provide a brief summary (max 2 sentences) of the key areas needing improvement, and include a code snippet from the diff that illustrates the issue. Keep the tone brief and human-like.
     """
 
     for file in relevant_files:
@@ -454,4 +459,3 @@ if __name__ == '__main__':
         print("Missing environment variables.")
         sys.exit(1)
     main()
-
