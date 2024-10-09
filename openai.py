@@ -32,7 +32,6 @@ response = requests.pot(url, json=payload, headers=headers)
 print(response.status_code)
 print(response.json())
 
-
 import requests
 
 # Define the API endpoint
@@ -40,7 +39,7 @@ url = "https://www.dex.inside.philips.com/philips-ai-chat/chat/api/user/SendImag
 
 # Define the headers with the cookie
 headers = {
-    'Cookie': 'cookie'
+        'Content-Type': 'application/json'
 }
 
 # Define the payload
@@ -65,3 +64,4 @@ response = requests.post(url, json=payload, headers=headers)
 # Print the response
 print(response.status_code)
 print(response.json())
+
