@@ -14,6 +14,7 @@ def add(x, y):
 def subtract(x, y):
     """
     Subtracts the second number from the first and returns the result.
+    Subtracts the second number from the first and returns the result.
     
     Parameters:
     x (float): The first number.
