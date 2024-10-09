@@ -262,6 +262,7 @@ def calculator():
     Runs the calculator program, allowing users to perform basic arithmetic operations.
     
     The user selects an operation (add, subtract, multiply, divide) and inputs two numbers.
+    he user selects an operation (add, subtract, multiply, divide) and inputs two numbers.
     The function then performs the selected operation and displays the result.
     """
     print("Select operation:")
