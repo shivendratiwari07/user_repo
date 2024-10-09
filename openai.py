@@ -1,6 +1,7 @@
 import requests
 
 # Define the API endpoint
+# Define the API endpoint
 url = "https://www.dex.inside.philips.com/philips-ai-chat/chat/api/user/SendImageMessage"
 
 # Define the headers with the cookie
@@ -10,6 +11,20 @@ headers = {
 }
 
 # Define the payload
+payload = {
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "What is ML?"
+                }
+            ]
+        }
+    ]
+}
+
 payload = {
     "messages": [
         {
