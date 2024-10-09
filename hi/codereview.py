@@ -158,6 +158,19 @@ def main():
        - Follow consistent brace style.
     """
 
+    rules = """
+    1. Code Quality:
+       - Naming conventions, comments, avoid magic numbers, and keep methods concise.
+    2. Performance:
+       - Optimize unnecessary queries, avoid string concatenation in loops, and minimize excessive conversions.
+    3. Security:
+       - Validate inputs and ensure no hard-coded secrets.
+    4. Maintainability:
+       - Remove dead code and apply consistent exception handling.
+    5. Style:
+       - Follow consistent brace style.
+    """
+
     for file in relevant_files:
         print(f"Analyzing {file['filename']}...")
         added_lines = fetch_added_lines_only(file)
