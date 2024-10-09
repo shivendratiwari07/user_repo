@@ -53,6 +53,12 @@ def fetch_added_lines_only(file):
     added_lines = [line for line in patch.splitlines() if line.startswith('+') and not line.startswith('+++')]
     return '\n'.join(added_lines)
 
+def fetch_added_lines_only(file):
+    """Fetch only the added lines (lines starting with '+') from the diff."""
+    patch = file.get('patch', '')
+    added_lines = [line for line in patch.splitlines() if line.startswith('+') and not line.startswith('+++')]
+    return '\n'.join(added_lines)
+
 def get_pull_request_commit_id():
     """Fetch the head commit ID of the pull request."""
     url = f'{GITHUB_API_URL}/repos/{GITHUB_REPOSITORY}/pulls/{PR_NUMBER}'
@@ -157,6 +163,7 @@ def main():
     5. Style:
        - Follow consistent brace style.
     """
+
 
     for file in relevant_files:
         print(f"Analyzing {file['filename']}...")
