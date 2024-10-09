@@ -3,7 +3,6 @@ import sys
 import json
 import requests
 
-
 # GitHub environment variables
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 GITHUB_REPOSITORY = os.getenv('GITHUB_REPOSITORY')
@@ -72,11 +71,12 @@ def send_diff_to_openai(diff, rules):
                     {
                         "type": "text",
                         "text": (
-                            "Please review the code changes provided in the diff below based on the following criteria:\n\n"
+                            "Act as a senior code reviewer. Focus only on critical and blocker issues in the provided code changes.\n\n"
                             + rules +
-                            "\n\nIf the code meets all the standards, respond with: 'Everything looks good.'"
-                            " If there are issues, provide a brief summary (1-2 sentences) about the key areas of improvement."
-                            "\n\nKeep your response short, like a human reviewer might provide."
+                            "\n\nYour feedback should highlight only critical or blocker issues, such as security vulnerabilities, significant bugs, or performance bottlenecks."
+                            " Include a brief explanation of each issue (max 2 sentences) and provide a code snippet that demonstrates the problem."
+                            " If everything looks fine, respond with: 'Everything looks good.'"
+                            " Keep your tone human-like, direct, and to the point. Ignore minor issues or non-critical feedback."
                             "\n\nHere is the diff with only the added lines:\n\n"
                             + diff
                         )
@@ -144,18 +144,18 @@ def main():
     # Fetch the correct commit ID from the PR
     commit_id = get_pull_request_commit_id()
 
-    # Define the rules with more detailed instructions and examples
+    # Define the rules with detailed instructions for a focused review
     rules = """
-    Please review the code changes provided in the diff below based on the following criteria:
-
-    1. Code Quality Rules: Check for clear naming conventions, avoid magic numbers, and ensure functions have comments.
-    2. Performance Optimization: Look for unnecessary iterations and inefficient string concatenations.
-    3. Security Best Practices: Check for input validation and avoid hard-coded secrets.
-    3. Security Best Practices: Check for input validation and avoid hard-coded secrets.
-    4. Maintainability: Remove dead code and ensure proper exception handling.
-    5. Code Style: Check brace style, consistent indentation, and look out for duplicated code.
-
-    If everything looks good, respond with 'Everything looks good.' Otherwise, provide a brief 1-2 sentence summary of what needs to be improved.
+    1. Code Quality:
+       - Naming conventions, comments, avoid magic numbers, and keep methods concise.
+    2. Performance:
+       - Optimize unnecessary queries, avoid string concatenation in loops, and minimize excessive conversions.
+    3. Security:
+       - Validate inputs and ensure no hard-coded secrets.
+    4. Maintainability:
+       - Remove dead code and apply consistent exception handling.
+    5. Style:
+       - Follow consistent brace style.
     """
 
     for file in relevant_files:
@@ -176,4 +176,3 @@ if __name__ == '__main__':
         print("Missing environment variables.")
         sys.exit(1)
     main()
-
