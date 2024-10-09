@@ -113,6 +113,7 @@ def subtract(x, y):
 def multiply(x, y):
     """
     Multiplies two numbers and returns the result.
+    Multiplies two numbers and returns the result.
     
     Parameters:
     x (float): The first number.
