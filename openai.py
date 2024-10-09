@@ -33,7 +33,34 @@ print(response.status_code)
 print(response.json())
 
 
-response = requests.pot(url, json=payload, headers=headers)
+import requests
+
+# Define the API endpoint
+url = "https://www.dex.inside.philips.com/philips-ai-chat/chat/api/user/SendImageMessage"
+
+# Define the headers with the cookie
+headers = {
+    'Cookie': 'cookie'
+}
+
+# Define the payload
+payload = {
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "What is ML?"
+                }
+            ]
+        }
+    ]
+}
+
+# Make the POST request
+#response = requests.post(url, json=payload, headers=headers)
+response = requests.post(url, json=payload, headers=headers)
 
 # Print the response
 print(response.status_code)
