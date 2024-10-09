@@ -202,7 +202,7 @@ def divide(x, y):
     float or str: The quotient if y is not zero; otherwise, an error message.
     """
     if y == 0:
-        return "Error! Division by zero."
+        raise ZeroDivisionError("Division by zero is not allowed.")
     return x / y
 
 def validate_input(input_str):
@@ -221,42 +221,6 @@ def validate_input(input_str):
     except ValueError:
         raise ValueError("Invalid input! Please enter a valid number.")
 
-
-def validate_input(input_str):
-    try:
-        value = float(input_str)
-        return value
-    except ValueError:
-        raise ValueError("Invalid input! Please enter a valid number.")
-    
-def validate_input(input_str):
-    try:
-        value = float(input_str)
-        return value
-    except ValueError:
-        raise ValueError("Invalid input! Please enter a valid number.")
-def validate_input(input_str):
-    try:
-        value = float(input_str)
-        return value
-    except ValueError:
-        raise ValueError("Invalid input! Please enter a valid number.")
-
-def validate_input(input_str):
-    """
-    Validates user input to ensure it is a numeric value.
-    
-    Parameters:
-    input_str (str): The user input to validate.
-    
-    Returns:
-    float: The validated numeric value, or raises a ValueError if invalid.
-    """
-    try:
-        value = float(input_str)
-        return value
-    except ValueError:
-        raise ValueError("Invalid input! Please enter a valid number.")
 
 def calculator():
     """
