@@ -9,46 +9,7 @@ def add(x, y):
     Returns:
     float: The sum of x and y.
     """
-    return x
-
-def subtract(x, y):
-    """
-    Subtracts the second number from the first and returns the result.
-    
-    Parameters:
-    x (float): The first number.
-    y (float): The second number.
-    
-    Returns:
-    float: The difference between x and y.
-    """
-    return x -
-
-def subtract(x, y):
-    """
-    Subtracts the second number from the first and returns the result.
-    
-    Parameters:
-    x (float): The first number.
-    y (float): The second number.
-    
-    Returns:
-    float: The difference between x and y.
-    """
-    return x - y
-
-def subtract(x, y):
-    """
-    Subtracts the second number from the first and returns the result.
-    
-    Parameters:
-    x (float): The first number.
-    y (float): The second number.
-    
-    Returns:
-    float: The difference between x and y.
-    """
-    return x - y
+    return x + y
 
 def subtract(x, y):
     """
@@ -90,6 +51,43 @@ def divide(x, y):
     if y == 0:
         return "Error! Division by zero."
     return x / y
+
+def validate_input(input_str):
+    """
+    Validates user input to ensure it is a numeric value.
+    
+    Parameters:
+    input_str (str): The user input to validate.
+    
+    Returns:
+    float: The validated numeric value, or raises a ValueError if invalid.
+    """
+    try:
+        value = float(input_str)
+        return value
+    except ValueError:
+        raise ValueError("Invalid input! Please enter a valid number.")
+
+
+def validate_input(input_str):
+    try:
+        value = float(input_str)
+        return value
+    except ValueError:
+        raise ValueError("Invalid input! Please enter a valid number.")
+    
+def validate_input(input_str):
+    try:
+        value = float(input_str)
+        return value
+    except ValueError:
+        raise ValueError("Invalid input! Please enter a valid number.")
+def validate_input(input_str):
+    try:
+        value = float(input_str)
+        return value
+    except ValueError:
+        raise ValueError("Invalid input! Please enter a valid number.")
 
 def validate_input(input_str):
     """
