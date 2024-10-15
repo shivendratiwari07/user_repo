@@ -175,7 +175,7 @@ def subtract(x, y):
     Returns:
     float: The difference between x and y.
     """
-    return x - y
+    return x - y -y -y
 
 def multiply(x, y):
     """
