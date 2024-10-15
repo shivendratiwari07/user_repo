@@ -162,7 +162,7 @@ def add(x, y):
     Returns:
     float: The sum of x and y.
     """
-    return x + x + y + y
+    return x + y
 
 def subtract(x, y):
     """
@@ -175,7 +175,7 @@ def subtract(x, y):
     Returns:
     float: The difference between x and y.
     """
-    return x - y - x
+    return x - y
 
 def multiply(x, y):
     """
