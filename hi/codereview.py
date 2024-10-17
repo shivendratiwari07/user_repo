@@ -53,12 +53,6 @@ def fetch_added_lines_only(file):
     added_lines = [line for line in patch.splitlines() if line.startswith('+') and not line.startswith('+++')]
     return '\n'.join(added_lines)
 
-def fetch_added_lines_only(file):
-    """Fetch only the added lines (lines starting with '+') from the diff."""
-    patch = file.get('patch', '')
-    added_lines = [line for line in patch.splitlines() if line.startswith('+') and not line.startswith('+++')]
-    return '\n'.join(added_lines)
-
 def get_pull_request_commit_id():
     """Fetch the head commit ID of the pull request."""
     url = f'{GITHUB_API_URL}/repos/{GITHUB_REPOSITORY}/pulls/{PR_NUMBER}'
@@ -77,12 +71,12 @@ def send_diff_to_openai(diff, rules):
                     {
                         "type": "text",
                         "text": (
-                            "Act as a senior code reviewer. Focus only on critical and blocker issues in the provided code changes.\n\n"
+                            "Please review the code changes provided in the diff below based on the following criteria:\n\n"
                             + rules +
-                            "\n\nYour feedback should highlight only critical or blocker issues, such as security vulnerabilities, significant bugs, or performance bottlenecks."
-                            " Include a brief explanation of each issue (max 2 sentences) and provide a code snippet that demonstrates the problem."
-                            " If everything looks fine, respond with: 'Everything looks good.'"
-                            " Keep your tone human-like, direct, and to the point. Ignore minor issues or non-critical feedback."
+                            "\n\nIf the overall code appears to be 80% good or more and has no critical issues, respond with: 'Everything looks good.'"
+                            " If there are critical issues that need attention, provide a brief summary (max 2 sentences) of the key areas needing improvement."
+                            " Include a code snippet from the diff that illustrates the issue, without suggesting detailed solutions or minor improvements."
+                            "\n\nKeep the response brief, as if it were from a human reviewer."
                             "\n\nHere is the diff with only the added lines:\n\n"
                             + diff
                         )
@@ -150,26 +144,24 @@ def main():
     # Fetch the correct commit ID from the PR
     commit_id = get_pull_request_commit_id()
 
-    # Define the rules with detailed instructions for a focused review
+    # Define the rules with more detailed instructions and examples
     rules = """
-    1. Code Quality:
-       - Naming conventions, comments, avoid magic numbers, and keep methods concise.
-    2. Performance:
-       - Optimize unnecessary queries, avoid string concatenation in loops, and minimize excessive conversions.
-    3. Security:
-       - Validate inputs and ensure no hard-coded secrets.
-    4. Maintainability:
-       - Remove dead code and apply consistent exception handling.
-    5. Style:
-       - Follow consistent brace style.
+    Please review the code changes provided in the diff below based on the following criteria:
+    1. Code Quality: Ensure clear naming conventions, avoid magic numbers, and verify that functions have appropriate comments.
+    2. Performance Optimization: Identify any unnecessary iterations or inefficient string concatenations.
+    3. Security Best Practices: Check for proper input validation and the absence of hard-coded secrets.
+    4. Maintainability: Look for dead code, proper exception handling, and ensure modularity.
+    5. Code Style: Confirm consistent indentation, brace style, and identify any duplicated code.
+
+    If the overall code appears to be 80% good or more and has no critical issues, simply respond with 'Everything looks good.' If there are critical issues, provide a brief summary (max 2 sentences) of the key areas needing improvement, and include a code snippet from the diff that illustrates the issue. Keep the tone brief and human-like.
     """
 
-
+    # Process each relevant file to get the diff and send it for review
     for file in relevant_files:
         print(f"Analyzing {file['filename']}...")
         added_lines = fetch_added_lines_only(file)
         if added_lines:
-            print("Sending added lines to DEX API for review...")
+            print(f"Sending added lines from {file['filename']} to DEX API for review...")
             feedback = send_diff_to_openai(added_lines, rules)
             if feedback:
                 post_review(feedback, commit_id, file)
