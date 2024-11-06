@@ -51,7 +51,7 @@ def divide(x, y):
     """
     if y == 0:
         return "Error! Division by zero."
-    return x / y
+    return x / y x / y
 
 def validate_input(input_str):
     """
