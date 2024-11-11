@@ -183,3 +183,14 @@ if __name__ == '__main__':
         print("Missing environment variables.")
         sys.exit(1)
     main()
+
+
+#####################
+
+def get_pull_request_commit_id():
+    """Fetch the head commit ID of the pull request."""
+    url = f'{GITHUB_API_URL}/repos/{GITHUB_REPOSITORY}/pulls/{PR_NUMBER}'
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    pr_data = response.json()
+    return pr_data['head']['sha']
