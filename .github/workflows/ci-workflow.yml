@@ -15,10 +15,12 @@ jobs:
 
     steps:
       - name: Automated Code Review
-        uses: shivendratiwari07/code_review@main
+        uses: shivendratiwari07/code_review@cookies
         with:
           GITHUB_TOKEN: ${{ secrets.FULL_ACCESS_GH_TOKEN }}
-          CUSTOM_SERVICE_COOKIE: ${{ secrets.CUSTOM_SERVICE_COOKIE }}
+          DEX_USERNAME: ${{ secrets.DEX_USERNAME }}
+          DEX_PASSWORD: ${{ secrets.DEX_PASSWORD }}
+          TOTP: ${{ secrets.TOTP }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-##
+#
