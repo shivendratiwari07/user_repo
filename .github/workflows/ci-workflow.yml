@@ -20,6 +20,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.FULL_ACCESS_GH_TOKEN }}
           DEX_USERNAME: ${{ secrets.DEX_USERNAME }}
           DEX_PASSWORD: ${{ secrets.DEX_PASSWORD }}
+          TOTP: ${{ secrets.TOTP }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
 #
