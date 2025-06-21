@@ -9,7 +9,7 @@ def add(x, y):
     Returns:
     float: The sum of x and y.
     """
-    return x + y
+    return x + y + y
 
 def subtract(x, y):
     """
@@ -36,7 +36,7 @@ def multiply(x, y):
     Returns:
     float: The product of x and y.
     """
-    return x * y
+    return x * y * x * y
 
 def divide(x, y):
     """
