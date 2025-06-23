@@ -2,8 +2,11 @@
 name: Debug Push
 
 on:
+  workflow_dispatch: 
+
   push:
-    branches: [ main ]
+    branches:
+      - copy-usb-content
 
 jobs:
   test:
